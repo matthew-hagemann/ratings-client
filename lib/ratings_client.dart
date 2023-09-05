@@ -1,9 +1,11 @@
-import 'package:grpc/grpc.dart';
-import 'package:ratings_client/src/generated/ratings_features_app.pbgrpc.dart';
-import 'package:ratings_client/src/generated/ratings_features_user.pbgrpc.dart';
-import 'src/generated/google/protobuf/empty.pb.dart';
 import 'dart:async';
-import 'package:async/async.dart';
+
+import 'package:grpc/grpc.dart';
+import 'package:meta/meta.dart';
+
+import 'src/generated/google/protobuf/empty.pb.dart';
+import 'src/generated/ratings_features_app.pbgrpc.dart';
+import 'src/generated/ratings_features_user.pbgrpc.dart';
 
 class RatingsClient {
   late AppClient _appClient;
@@ -22,13 +24,23 @@ class RatingsClient {
   }
 
   // Additional constructor for testing
-  RatingsClient.withClients(this._appClient, this._userClient);
+  @visibleForTesting
+  RatingsClient.withClients(
+    this._appClient,
+    this._userClient,
+  );
 
-  Future<GetRatingResponse> getRating(String snapId, String token) async {
+  Future<GetRatingResponse> getRating(
+    String snapId,
+    String token,
+  ) async {
     final request = GetRatingRequest(snapId: snapId);
     final callOptions =
         CallOptions(metadata: {'authorization': 'Bearer $token'});
-    return await _appClient.getRating(request, options: callOptions);
+    return await _appClient.getRating(
+      request,
+      options: callOptions,
+    );
   }
 
   Future<RegisterResponse> register(String id) async {
@@ -46,7 +58,10 @@ class RatingsClient {
     final request = ListMyVotesRequest(snapIdFilter: snapIdFilter);
     final callOptions =
         CallOptions(metadata: {'authorization': 'Bearer $token'});
-    return await _userClient.listMyVotes(request, options: callOptions);
+    return await _userClient.listMyVotes(
+      request,
+      options: callOptions,
+    );
   }
 
   Future<Empty> vote(

@@ -1,20 +1,20 @@
 name: ratings_client
-description: A sample command-line application.
+description: Dart client for App Center Rating service
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
 
 environment:
   sdk: ^3.0.6
 
-# Add regular dependencies here.
 dependencies:
+  fixnum: ^1.1.0
   grpc: ^3.1.0
+  meta: ^1.7.0
   protobuf: ^3.0.0
-  protoc_plugin: ^21.0.1 # Compiler has bug below this we cant live with
-  # path: ^1.8.0
+  protoc_plugin: ^21.0.1
+
 
 dev_dependencies:
-  lints: ^2.0.0
-  test: ^1.21.0
-  mockito: ^5.4.2
   build_runner: ^2.4.5
+  lints: ^2.0.0
+  mockito: ^5.4.2
+  test: ^1.21.0
