@@ -1,4 +1,4 @@
-name: ratings_client
+name: app_center_ratings_client
 description: Dart client for App Center Rating service
 version: 1.0.0
 

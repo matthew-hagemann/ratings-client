@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:grpc/grpc.dart';
 import 'package:meta/meta.dart';
 
+import 'src/app.dart' as app;
 import 'src/generated/google/protobuf/empty.pb.dart';
 import 'src/generated/ratings_features_app.pbgrpc.dart';
 import 'src/generated/ratings_features_user.pbgrpc.dart';
+import 'src/user.dart' as user;
 
 class RatingsClient {
   late AppClient _appClient;
@@ -30,41 +32,44 @@ class RatingsClient {
     this._userClient,
   );
 
-  Future<GetRatingResponse> getRating(
+  Future<app.Rating> getRating(
     String snapId,
     String token,
   ) async {
     final request = GetRatingRequest(snapId: snapId);
     final callOptions =
         CallOptions(metadata: {'authorization': 'Bearer $token'});
-    return await _appClient.getRating(
+    final grpcResponse = await _appClient.getRating(
       request,
       options: callOptions,
     );
+    return grpcResponse.rating.fromDTO();
   }
 
-  Future<RegisterResponse> register(String id) async {
+  Future<String> register(String id) async {
     final request = RegisterRequest(id: id);
-    return await _userClient.register(request);
+    final grpcResponse = await _userClient.register(request);
+    return grpcResponse.token;
   }
 
-  Future<AuthenticateResponse> authenticate(String id) async {
+  Future<String> authenticate(String id) async {
     final request = AuthenticateRequest(id: id);
-    return await _userClient.authenticate(request);
+    final grpcResponse = await _userClient.authenticate(request);
+    return grpcResponse.token;
   }
 
-  Future<ListMyVotesResponse> listMyVotes(
-      String snapIdFilter, String token) async {
+  Future<List<user.Vote>> listMyVotes(String snapIdFilter, String token) async {
     final request = ListMyVotesRequest(snapIdFilter: snapIdFilter);
     final callOptions =
         CallOptions(metadata: {'authorization': 'Bearer $token'});
-    return await _userClient.listMyVotes(
+    final grpcResponse = await _userClient.listMyVotes(
       request,
       options: callOptions,
     );
+    return grpcResponse.votes.map((vote) => vote.fromDTO()).toList();
   }
 
-  Future<Empty> vote(
+  Future<void> vote(
       String snapId, int snapRevision, bool voteUp, String token) async {
     final request = VoteRequest(
       snapId: snapId,
@@ -73,13 +78,13 @@ class RatingsClient {
     );
     final callOptions =
         CallOptions(metadata: {'authorization': 'Bearer $token'});
-    return await _userClient.vote(request, options: callOptions);
+    await _userClient.vote(request, options: callOptions);
   }
 
-  Future<Empty> delete(String token) async {
+  Future<void> delete(String token) async {
     final request = Empty();
     final callOptions =
         CallOptions(metadata: {'authorization': 'Bearer $token'});
-    return await _userClient.delete(request, options: callOptions);
+    await _userClient.delete(request, options: callOptions);
   }
 }
