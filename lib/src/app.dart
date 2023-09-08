@@ -1,32 +1,16 @@
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'generated/ratings_features_app.pb.dart' as pb;
 
-@immutable
-class Rating {
-  final String snapId;
-  final int totalVotes;
-  final RatingsBand ratingsBand;
+part 'app.freezed.dart';
 
-  Rating({
-    required this.snapId,
-    required this.totalVotes,
-    required this.ratingsBand,
-  });
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Rating &&
-        other.snapId == snapId &&
-        other.totalVotes == totalVotes &&
-        other.ratingsBand == ratingsBand;
-  }
-
-  @override
-  int get hashCode =>
-      snapId.hashCode ^ totalVotes.hashCode ^ ratingsBand.hashCode;
+@freezed
+class Rating with _$Rating {
+  const factory Rating({
+    required String snapId,
+    required int totalVotes,
+    required RatingsBand ratingsBand,
+  }) = _Rating;
 }
 
 enum RatingsBand {
@@ -50,21 +34,13 @@ extension RatingFromDTO on pb.Rating {
 
 extension RatingsBandFromDTO on pb.RatingsBand {
   RatingsBand fromDTO() {
-    switch (this) {
-      case pb.RatingsBand.VERY_GOOD:
-        return RatingsBand.veryGood;
-      case pb.RatingsBand.GOOD:
-        return RatingsBand.good;
-      case pb.RatingsBand.NEUTRAL:
-        return RatingsBand.neutral;
-      case pb.RatingsBand.POOR:
-        return RatingsBand.poor;
-      case pb.RatingsBand.VERY_POOR:
-        return RatingsBand.veryPoor;
-      case pb.RatingsBand.INSUFFICIENT_VOTES:
-        return RatingsBand.insufficientVotes;
-      default:
-        return RatingsBand.insufficientVotes;
-    }
+    return switch (this) {
+      pb.RatingsBand.VERY_GOOD => RatingsBand.veryGood,
+      pb.RatingsBand.GOOD => RatingsBand.good,
+      pb.RatingsBand.NEUTRAL => RatingsBand.neutral,
+      pb.RatingsBand.POOR => RatingsBand.poor,
+      pb.RatingsBand.VERY_POOR => RatingsBand.veryPoor,
+      _ => RatingsBand.insufficientVotes,
+    };
   }
 }

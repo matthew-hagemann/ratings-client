@@ -1,38 +1,17 @@
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'generated/ratings_features_user.pb.dart' as pb;
 
-@immutable
-class Vote {
-  final String snapId;
-  final int snapRevision;
-  final bool voteUp;
-  final DateTime dateTime;
+part 'user.freezed.dart';
 
-  Vote({
-    required this.snapId,
-    required this.snapRevision,
-    required this.voteUp,
-    required this.dateTime,
-  });
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Vote &&
-        other.snapId == snapId &&
-        other.snapRevision == snapRevision &&
-        other.voteUp == voteUp &&
-        other.dateTime == dateTime;
-  }
-
-  @override
-  int get hashCode =>
-      snapId.hashCode ^
-      snapRevision.hashCode ^
-      voteUp.hashCode ^
-      dateTime.hashCode;
+@freezed
+class Vote with _$Vote {
+  const factory Vote({
+    required String snapId,
+    required int snapRevision,
+    required bool voteUp,
+    required DateTime dateTime,
+  }) = _Vote;
 }
 
 extension VoteFromDTO on pb.Vote {
