@@ -46,12 +46,6 @@ class RatingsClient {
     return grpcResponse.rating.fromDTO();
   }
 
-  Future<String> register(String id) async {
-    final request = RegisterRequest(id: id);
-    final grpcResponse = await _userClient.register(request);
-    return grpcResponse.token;
-  }
-
   Future<String> authenticate(String id) async {
     final request = AuthenticateRequest(id: id);
     final grpcResponse = await _userClient.authenticate(request);

@@ -183,26 +183,6 @@ class MockUserClient extends _i1.Mock implements _i7.UserClient {
   }
 
   @override
-  _i2.ResponseFuture<_i8.RegisterResponse> register(
-    _i8.RegisterRequest? request, {
-    _i2.CallOptions? options,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #register,
-          [request],
-          {#options: options},
-        ),
-        returnValue: _FakeResponseFuture_0<_i8.RegisterResponse>(
-          this,
-          Invocation.method(
-            #register,
-            [request],
-            {#options: options},
-          ),
-        ),
-      ) as _i2.ResponseFuture<_i8.RegisterResponse>);
-  @override
   _i2.ResponseFuture<_i8.AuthenticateResponse> authenticate(
     _i8.AuthenticateRequest? request, {
     _i2.CallOptions? options,

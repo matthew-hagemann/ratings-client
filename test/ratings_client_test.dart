@@ -65,21 +65,6 @@ void main() {
     );
   });
 
-  test('register user', () async {
-    final id = 'foo';
-    final token = 'bar';
-    final mockResponse = RegisterResponse(token: token);
-    final request = RegisterRequest(id: id);
-    when(mockUserClient.register(request))
-        .thenAnswer((_) => MockResponseFuture<RegisterResponse>(mockResponse));
-    final response = await ratingsClient.register(id);
-    verify(mockUserClient.register(request)).captured;
-    expect(
-      response,
-      equals(token),
-    );
-  });
-
   test('authenticate user', () async {
     final id = 'foo';
     final token = 'bar';
