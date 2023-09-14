@@ -63,6 +63,31 @@ final $typed_data.Uint8List listMyVotesResponseDescriptor = $convert.base64Decod
     'ChNMaXN0TXlWb3Rlc1Jlc3BvbnNlEjEKBXZvdGVzGAEgAygLMhsucmF0aW5ncy5mZWF0dXJlcy'
     '51c2VyLlZvdGVSBXZvdGVz');
 
+@$core.Deprecated('Use getSnapVotesRequestDescriptor instead')
+const GetSnapVotesRequest$json = {
+  '1': 'GetSnapVotesRequest',
+  '2': [
+    {'1': 'snap_id', '3': 1, '4': 1, '5': 9, '10': 'snapId'},
+  ],
+};
+
+/// Descriptor for `GetSnapVotesRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getSnapVotesRequestDescriptor = $convert.base64Decode(
+    'ChNHZXRTbmFwVm90ZXNSZXF1ZXN0EhcKB3NuYXBfaWQYASABKAlSBnNuYXBJZA==');
+
+@$core.Deprecated('Use getSnapVotesResponseDescriptor instead')
+const GetSnapVotesResponse$json = {
+  '1': 'GetSnapVotesResponse',
+  '2': [
+    {'1': 'votes', '3': 1, '4': 3, '5': 11, '6': '.ratings.features.user.Vote', '10': 'votes'},
+  ],
+};
+
+/// Descriptor for `GetSnapVotesResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getSnapVotesResponseDescriptor = $convert.base64Decode(
+    'ChRHZXRTbmFwVm90ZXNSZXNwb25zZRIxCgV2b3RlcxgBIAMoCzIbLnJhdGluZ3MuZmVhdHVyZX'
+    'MudXNlci5Wb3RlUgV2b3Rlcw==');
+
 @$core.Deprecated('Use voteDescriptor instead')
 const Vote$json = {
   '1': 'Vote',

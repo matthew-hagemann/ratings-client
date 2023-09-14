@@ -38,6 +38,10 @@ class UserClient extends $grpc.Client {
       '/ratings.features.user.User/ListMyVotes',
       ($0.ListMyVotesRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.ListMyVotesResponse.fromBuffer(value));
+  static final _$getSnapVotes = $grpc.ClientMethod<$0.GetSnapVotesRequest, $0.GetSnapVotesResponse>(
+      '/ratings.features.user.User/GetSnapVotes',
+      ($0.GetSnapVotesRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.GetSnapVotesResponse.fromBuffer(value));
 
   UserClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -59,6 +63,10 @@ class UserClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$0.ListMyVotesResponse> listMyVotes($0.ListMyVotesRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$listMyVotes, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.GetSnapVotesResponse> getSnapVotes($0.GetSnapVotesRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getSnapVotes, request, options: options);
   }
 }
 
@@ -95,6 +103,13 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.ListMyVotesRequest.fromBuffer(value),
         ($0.ListMyVotesResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetSnapVotesRequest, $0.GetSnapVotesResponse>(
+        'GetSnapVotes',
+        getSnapVotes_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.GetSnapVotesRequest.fromBuffer(value),
+        ($0.GetSnapVotesResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.AuthenticateResponse> authenticate_Pre($grpc.ServiceCall call, $async.Future<$0.AuthenticateRequest> request) async {
@@ -113,8 +128,13 @@ abstract class UserServiceBase extends $grpc.Service {
     return listMyVotes(call, await request);
   }
 
+  $async.Future<$0.GetSnapVotesResponse> getSnapVotes_Pre($grpc.ServiceCall call, $async.Future<$0.GetSnapVotesRequest> request) async {
+    return getSnapVotes(call, await request);
+  }
+
   $async.Future<$0.AuthenticateResponse> authenticate($grpc.ServiceCall call, $0.AuthenticateRequest request);
   $async.Future<$1.Empty> delete($grpc.ServiceCall call, $1.Empty request);
   $async.Future<$1.Empty> vote($grpc.ServiceCall call, $0.VoteRequest request);
   $async.Future<$0.ListMyVotesResponse> listMyVotes($grpc.ServiceCall call, $0.ListMyVotesRequest request);
+  $async.Future<$0.GetSnapVotesResponse> getSnapVotes($grpc.ServiceCall call, $0.GetSnapVotesRequest request);
 }

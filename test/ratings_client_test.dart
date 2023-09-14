@@ -170,6 +170,63 @@ void main() {
         ));
   });
 
+  test('user votes by snap id', () async {
+    final snapId = 'foo';
+    final token = 'bar';
+    final time = DateTime.now().toUtc();
+    final mockVotes = <Vote>[
+      Vote(
+          snapId: snapId,
+          snapRevision: 1,
+          voteUp: true,
+          timestamp: Timestamp.fromDateTime(time)),
+      Vote(
+          snapId: snapId,
+          snapRevision: 2,
+          voteUp: false,
+          timestamp: Timestamp.fromDateTime(time)),
+    ];
+    final expectedResponse = <user.Vote>[
+      user.Vote(
+        snapId: snapId,
+        snapRevision: 1,
+        voteUp: true,
+        dateTime: time,
+      ),
+      user.Vote(
+        snapId: snapId,
+        snapRevision: 2,
+        voteUp: false,
+        dateTime: time,
+      ),
+    ];
+    final mockResponse = GetSnapVotesResponse(votes: mockVotes);
+    final request = GetSnapVotesRequest(snapId: snapId);
+
+    when(mockUserClient.getSnapVotes(
+      request,
+      options: anyNamed('options'),
+    )).thenAnswer(
+        (_) => MockResponseFuture<GetSnapVotesResponse>(mockResponse));
+    final response = await ratingsClient.getSnapVotes(
+      snapId,
+      token,
+    );
+    expect(response, equals(expectedResponse));
+
+    final capturedArgs = verify(mockUserClient.getSnapVotes(request,
+            options: captureAnyNamed('options')))
+        .captured;
+    final capturedOptions = capturedArgs.single as CallOptions;
+    expect(
+      capturedOptions.metadata,
+      containsPair(
+        'authorization',
+        'Bearer $token',
+      ),
+    );
+  });
+
   test('delete user', () async {
     final token = 'bar';
     final request = Empty();

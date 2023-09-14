@@ -81,4 +81,15 @@ class RatingsClient {
         CallOptions(metadata: {'authorization': 'Bearer $token'});
     await _userClient.delete(request, options: callOptions);
   }
+
+  Future<List<user.Vote>> getSnapVotes(String snap_id, String token) async {
+    final request = GetSnapVotesRequest(snapId: snap_id);
+    final callOptions =
+        CallOptions(metadata: {'authorization': 'Bearer $token'});
+    final grpcResponse = await _userClient.getSnapVotes(
+      request,
+      options: callOptions,
+    );
+    return grpcResponse.votes.map((vote) => vote.fromDTO()).toList();
+  }
 }

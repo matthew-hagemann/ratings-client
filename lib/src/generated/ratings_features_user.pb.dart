@@ -209,6 +209,100 @@ class ListMyVotesResponse extends $pb.GeneratedMessage {
   $core.List<Vote> get votes => $_getList(0);
 }
 
+class GetSnapVotesRequest extends $pb.GeneratedMessage {
+  factory GetSnapVotesRequest({
+    $core.String? snapId,
+  }) {
+    final $result = create();
+    if (snapId != null) {
+      $result.snapId = snapId;
+    }
+    return $result;
+  }
+  GetSnapVotesRequest._() : super();
+  factory GetSnapVotesRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSnapVotesRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetSnapVotesRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'ratings.features.user'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'snapId')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetSnapVotesRequest clone() => GetSnapVotesRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetSnapVotesRequest copyWith(void Function(GetSnapVotesRequest) updates) => super.copyWith((message) => updates(message as GetSnapVotesRequest)) as GetSnapVotesRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetSnapVotesRequest create() => GetSnapVotesRequest._();
+  GetSnapVotesRequest createEmptyInstance() => create();
+  static $pb.PbList<GetSnapVotesRequest> createRepeated() => $pb.PbList<GetSnapVotesRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetSnapVotesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSnapVotesRequest>(create);
+  static GetSnapVotesRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get snapId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set snapId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasSnapId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSnapId() => clearField(1);
+}
+
+class GetSnapVotesResponse extends $pb.GeneratedMessage {
+  factory GetSnapVotesResponse({
+    $core.Iterable<Vote>? votes,
+  }) {
+    final $result = create();
+    if (votes != null) {
+      $result.votes.addAll(votes);
+    }
+    return $result;
+  }
+  GetSnapVotesResponse._() : super();
+  factory GetSnapVotesResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSnapVotesResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetSnapVotesResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'ratings.features.user'), createEmptyInstance: create)
+    ..pc<Vote>(1, _omitFieldNames ? '' : 'votes', $pb.PbFieldType.PM, subBuilder: Vote.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetSnapVotesResponse clone() => GetSnapVotesResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetSnapVotesResponse copyWith(void Function(GetSnapVotesResponse) updates) => super.copyWith((message) => updates(message as GetSnapVotesResponse)) as GetSnapVotesResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetSnapVotesResponse create() => GetSnapVotesResponse._();
+  GetSnapVotesResponse createEmptyInstance() => create();
+  static $pb.PbList<GetSnapVotesResponse> createRepeated() => $pb.PbList<GetSnapVotesResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetSnapVotesResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSnapVotesResponse>(create);
+  static GetSnapVotesResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<Vote> get votes => $_getList(0);
+}
+
 class Vote extends $pb.GeneratedMessage {
   factory Vote({
     $core.String? snapId,

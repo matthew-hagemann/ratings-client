@@ -263,6 +263,26 @@ class MockUserClient extends _i1.Mock implements _i7.UserClient {
         ),
       ) as _i2.ResponseFuture<_i8.ListMyVotesResponse>);
   @override
+  _i2.ResponseFuture<_i8.GetSnapVotesResponse> getSnapVotes(
+    _i8.GetSnapVotesRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getSnapVotes,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i8.GetSnapVotesResponse>(
+          this,
+          Invocation.method(
+            #getSnapVotes,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i8.GetSnapVotesResponse>);
+  @override
   _i3.ClientCall<Q, R> $createCall<Q, R>(
     _i2.ClientMethod<Q, R>? method,
     _i6.Stream<Q>? requests, {
