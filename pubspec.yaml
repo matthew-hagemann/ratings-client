@@ -1,5 +1,7 @@
 name: app_center_ratings_client
 description: Dart client for App Center Rating service
+homepage: https://github.com/canonical/app_center_ratings_client.dart
+repository: https://github.com/canonical/app_center_ratings_client.dart
 version: 1.0.0
 
 environment:
