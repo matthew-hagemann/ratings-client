@@ -46,8 +46,22 @@ final $typed_data.Uint8List timeframeDescriptor = $convert.base64Decode(
 const GetChartRequest$json = {
   '1': 'GetChartRequest',
   '2': [
-    {'1': 'timeframe', '3': 1, '4': 1, '5': 14, '6': '.ratings.features.chart.Timeframe', '10': 'timeframe'},
-    {'1': 'type', '3': 2, '4': 1, '5': 14, '6': '.ratings.features.chart.ChartType', '10': 'type'},
+    {
+      '1': 'timeframe',
+      '3': 1,
+      '4': 1,
+      '5': 14,
+      '6': '.ratings.features.chart.Timeframe',
+      '10': 'timeframe'
+    },
+    {
+      '1': 'type',
+      '3': 2,
+      '4': 1,
+      '5': 14,
+      '6': '.ratings.features.chart.ChartType',
+      '10': 'type'
+    },
   ],
 };
 
@@ -61,9 +75,30 @@ final $typed_data.Uint8List getChartRequestDescriptor = $convert.base64Decode(
 const GetChartResponse$json = {
   '1': 'GetChartResponse',
   '2': [
-    {'1': 'timeframe', '3': 1, '4': 1, '5': 14, '6': '.ratings.features.chart.Timeframe', '10': 'timeframe'},
-    {'1': 'type', '3': 2, '4': 1, '5': 14, '6': '.ratings.features.chart.ChartType', '10': 'type'},
-    {'1': 'ordered_chart_data', '3': 3, '4': 3, '5': 11, '6': '.ratings.features.chart.ChartData', '10': 'orderedChartData'},
+    {
+      '1': 'timeframe',
+      '3': 1,
+      '4': 1,
+      '5': 14,
+      '6': '.ratings.features.chart.Timeframe',
+      '10': 'timeframe'
+    },
+    {
+      '1': 'type',
+      '3': 2,
+      '4': 1,
+      '5': 14,
+      '6': '.ratings.features.chart.ChartType',
+      '10': 'type'
+    },
+    {
+      '1': 'ordered_chart_data',
+      '3': 3,
+      '4': 3,
+      '5': 11,
+      '6': '.ratings.features.chart.ChartData',
+      '10': 'orderedChartData'
+    },
   ],
 };
 
@@ -88,4 +123,3 @@ const ChartData$json = {
 final $typed_data.Uint8List chartDataDescriptor = $convert.base64Decode(
     'CglDaGFydERhdGESEAoDYXBwGAEgASgJUgNhcHASJAoOdG90YWxfdXBfdm90ZXMYAiABKARSDH'
     'RvdGFsVXBWb3RlcxIoChB0b3RhbF9kb3duX3ZvdGVzGAMgASgEUg50b3RhbERvd25Wb3Rlcw==');
-

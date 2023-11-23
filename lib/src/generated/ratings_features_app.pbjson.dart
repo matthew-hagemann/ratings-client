@@ -47,7 +47,14 @@ final $typed_data.Uint8List getRatingRequestDescriptor = $convert.base64Decode(
 const GetRatingResponse$json = {
   '1': 'GetRatingResponse',
   '2': [
-    {'1': 'rating', '3': 1, '4': 1, '5': 11, '6': '.ratings.features.app.Rating', '10': 'rating'},
+    {
+      '1': 'rating',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.ratings.features.app.Rating',
+      '10': 'rating'
+    },
   ],
 };
 
@@ -62,7 +69,14 @@ const Rating$json = {
   '2': [
     {'1': 'snap_id', '3': 1, '4': 1, '5': 9, '10': 'snapId'},
     {'1': 'total_votes', '3': 2, '4': 1, '5': 4, '10': 'totalVotes'},
-    {'1': 'ratings_band', '3': 3, '4': 1, '5': 14, '6': '.ratings.features.app.RatingsBand', '10': 'ratingsBand'},
+    {
+      '1': 'ratings_band',
+      '3': 3,
+      '4': 1,
+      '5': 14,
+      '6': '.ratings.features.app.RatingsBand',
+      '10': 'ratingsBand'
+    },
   ],
 };
 
@@ -71,4 +85,3 @@ final $typed_data.Uint8List ratingDescriptor = $convert.base64Decode(
     'CgZSYXRpbmcSFwoHc25hcF9pZBgBIAEoCVIGc25hcElkEh8KC3RvdGFsX3ZvdGVzGAIgASgEUg'
     'p0b3RhbFZvdGVzEkQKDHJhdGluZ3NfYmFuZBgDIAEoDjIhLnJhdGluZ3MuZmVhdHVyZXMuYXBw'
     'LlJhdGluZ3NCYW5kUgtyYXRpbmdzQmFuZA==');
-
