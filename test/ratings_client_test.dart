@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:app_center_ratings_client/app_center_ratings_client.dart';
 import 'package:app_center_ratings_client/src/app.dart' as app;
+import 'package:app_center_ratings_client/src/chart.dart' as chart;
 import 'package:app_center_ratings_client/src/generated/google/protobuf/empty.pb.dart';
 import 'package:app_center_ratings_client/src/generated/google/protobuf/timestamp.pb.dart';
-import 'package:app_center_ratings_client/src/generated/ratings_features_app.pbgrpc.dart';
+import 'package:app_center_ratings_client/src/generated/ratings_features_app.pbgrpc.dart'
+    as pb;
+import 'package:app_center_ratings_client/src/generated/ratings_features_chart.pbgrpc.dart';
 import 'package:app_center_ratings_client/src/generated/ratings_features_user.pbgrpc.dart';
 import 'package:app_center_ratings_client/src/user.dart' as user;
 import 'package:fixnum/fixnum.dart';
@@ -15,34 +18,85 @@ import 'package:test/test.dart';
 
 import 'ratings_client_test.mocks.dart';
 
-@GenerateMocks([AppClient, UserClient])
+@GenerateMocks([pb.AppClient, UserClient, ChartClient])
 void main() {
   final mockAppClient = MockAppClient();
   final mockUserClient = MockUserClient();
-  final ratingsClient = RatingsClient.withClients(
-    mockAppClient,
-    mockUserClient,
-  );
+  final mockChartClient = MockChartClient();
+  final ratingsClient =
+      RatingsClient.withClients(mockAppClient, mockUserClient, mockChartClient);
+
+  test('get chart', () async {
+    final app = 'foo';
+    final token = 'bar';
+    final timeframe = chart.Timeframe.month;
+    final pbChartList = [
+      ChartData(
+        app: app,
+        totalUpVotes: Int64(1),
+        totalDownVotes: Int64(2),
+        rating: 3,
+        ratingsBand: RatingsBand.NEUTRAL,
+      )
+    ];
+
+    final expectedResponse = [
+      chart.ChartData(
+        app: app,
+        totalUpVotes: 1,
+        totalDownVotes: 2,
+        rating: 3,
+        ratingsBand: chart.RatingsBand.neutral,
+      )
+    ];
+    final mockResponse = GetChartResponse(
+      timeframe: Timeframe.TIMEFRAME_MONTH,
+      orderedChartData: pbChartList,
+    );
+    final request = GetChartRequest(timeframe: Timeframe.TIMEFRAME_MONTH);
+    when(mockChartClient.getChart(
+      request,
+      options: anyNamed('options'),
+    )).thenAnswer((_) => MockResponseFuture<GetChartResponse>(mockResponse));
+    final response = await ratingsClient.getChart(timeframe, token);
+    expect(
+      response,
+      equals(expectedResponse),
+    );
+    final capturedArgs = verify(mockChartClient.getChart(
+      request,
+      options: captureAnyNamed('options'),
+    )).captured;
+    final capturedOptions = capturedArgs.single as CallOptions;
+    expect(
+      capturedOptions.metadata,
+      containsPair(
+        'authorization',
+        'Bearer $token',
+      ),
+    );
+  });
 
   test('get rating', () async {
     final snapId = 'foo';
     final token = 'bar';
-    final pbRating = Rating(
+    final pbRating = pb.Rating(
       snapId: snapId,
       totalVotes: Int64(105),
-      ratingsBand: RatingsBand.NEUTRAL,
+      ratingsBand: pb.RatingsBand.NEUTRAL,
     );
     final expectedResponse = app.Rating(
       snapId: snapId,
       totalVotes: 105,
       ratingsBand: app.RatingsBand.neutral,
     );
-    final mockResponse = GetRatingResponse(rating: pbRating);
-    final request = GetRatingRequest(snapId: snapId);
+    final mockResponse = pb.GetRatingResponse(rating: pbRating);
+    final request = pb.GetRatingRequest(snapId: snapId);
     when(mockAppClient.getRating(
       request,
       options: anyNamed('options'),
-    )).thenAnswer((_) => MockResponseFuture<GetRatingResponse>(mockResponse));
+    )).thenAnswer(
+        (_) => MockResponseFuture<pb.GetRatingResponse>(mockResponse));
     final response = await ratingsClient.getRating(
       snapId,
       token,

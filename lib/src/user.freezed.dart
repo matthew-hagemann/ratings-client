@@ -73,18 +73,20 @@ class _$VoteCopyWithImpl<$Res, $Val extends Vote>
 }
 
 /// @nodoc
-abstract class _$$_VoteCopyWith<$Res> implements $VoteCopyWith<$Res> {
-  factory _$$_VoteCopyWith(_$_Vote value, $Res Function(_$_Vote) then) =
-      __$$_VoteCopyWithImpl<$Res>;
+abstract class _$$VoteImplCopyWith<$Res> implements $VoteCopyWith<$Res> {
+  factory _$$VoteImplCopyWith(
+          _$VoteImpl value, $Res Function(_$VoteImpl) then) =
+      __$$VoteImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String snapId, int snapRevision, bool voteUp, DateTime dateTime});
 }
 
 /// @nodoc
-class __$$_VoteCopyWithImpl<$Res> extends _$VoteCopyWithImpl<$Res, _$_Vote>
-    implements _$$_VoteCopyWith<$Res> {
-  __$$_VoteCopyWithImpl(_$_Vote _value, $Res Function(_$_Vote) _then)
+class __$$VoteImplCopyWithImpl<$Res>
+    extends _$VoteCopyWithImpl<$Res, _$VoteImpl>
+    implements _$$VoteImplCopyWith<$Res> {
+  __$$VoteImplCopyWithImpl(_$VoteImpl _value, $Res Function(_$VoteImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,7 +97,7 @@ class __$$_VoteCopyWithImpl<$Res> extends _$VoteCopyWithImpl<$Res, _$_Vote>
     Object? voteUp = null,
     Object? dateTime = null,
   }) {
-    return _then(_$_Vote(
+    return _then(_$VoteImpl(
       snapId: null == snapId
           ? _value.snapId
           : snapId // ignore: cast_nullable_to_non_nullable
@@ -118,8 +120,8 @@ class __$$_VoteCopyWithImpl<$Res> extends _$VoteCopyWithImpl<$Res, _$_Vote>
 
 /// @nodoc
 
-class _$_Vote implements _Vote {
-  const _$_Vote(
+class _$VoteImpl implements _Vote {
+  const _$VoteImpl(
       {required this.snapId,
       required this.snapRevision,
       required this.voteUp,
@@ -143,7 +145,7 @@ class _$_Vote implements _Vote {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Vote &&
+            other is _$VoteImpl &&
             (identical(other.snapId, snapId) || other.snapId == snapId) &&
             (identical(other.snapRevision, snapRevision) ||
                 other.snapRevision == snapRevision) &&
@@ -159,8 +161,8 @@ class _$_Vote implements _Vote {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_VoteCopyWith<_$_Vote> get copyWith =>
-      __$$_VoteCopyWithImpl<_$_Vote>(this, _$identity);
+  _$$VoteImplCopyWith<_$VoteImpl> get copyWith =>
+      __$$VoteImplCopyWithImpl<_$VoteImpl>(this, _$identity);
 }
 
 abstract class _Vote implements Vote {
@@ -168,7 +170,7 @@ abstract class _Vote implements Vote {
       {required final String snapId,
       required final int snapRevision,
       required final bool voteUp,
-      required final DateTime dateTime}) = _$_Vote;
+      required final DateTime dateTime}) = _$VoteImpl;
 
   @override
   String get snapId;
@@ -180,5 +182,6 @@ abstract class _Vote implements Vote {
   DateTime get dateTime;
   @override
   @JsonKey(ignore: true)
-  _$$_VoteCopyWith<_$_Vote> get copyWith => throw _privateConstructorUsedError;
+  _$$VoteImplCopyWith<_$VoteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

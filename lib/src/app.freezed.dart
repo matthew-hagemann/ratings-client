@@ -67,19 +67,21 @@ class _$RatingCopyWithImpl<$Res, $Val extends Rating>
 }
 
 /// @nodoc
-abstract class _$$_RatingCopyWith<$Res> implements $RatingCopyWith<$Res> {
-  factory _$$_RatingCopyWith(_$_Rating value, $Res Function(_$_Rating) then) =
-      __$$_RatingCopyWithImpl<$Res>;
+abstract class _$$RatingImplCopyWith<$Res> implements $RatingCopyWith<$Res> {
+  factory _$$RatingImplCopyWith(
+          _$RatingImpl value, $Res Function(_$RatingImpl) then) =
+      __$$RatingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String snapId, int totalVotes, RatingsBand ratingsBand});
 }
 
 /// @nodoc
-class __$$_RatingCopyWithImpl<$Res>
-    extends _$RatingCopyWithImpl<$Res, _$_Rating>
-    implements _$$_RatingCopyWith<$Res> {
-  __$$_RatingCopyWithImpl(_$_Rating _value, $Res Function(_$_Rating) _then)
+class __$$RatingImplCopyWithImpl<$Res>
+    extends _$RatingCopyWithImpl<$Res, _$RatingImpl>
+    implements _$$RatingImplCopyWith<$Res> {
+  __$$RatingImplCopyWithImpl(
+      _$RatingImpl _value, $Res Function(_$RatingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -89,7 +91,7 @@ class __$$_RatingCopyWithImpl<$Res>
     Object? totalVotes = null,
     Object? ratingsBand = null,
   }) {
-    return _then(_$_Rating(
+    return _then(_$RatingImpl(
       snapId: null == snapId
           ? _value.snapId
           : snapId // ignore: cast_nullable_to_non_nullable
@@ -108,8 +110,8 @@ class __$$_RatingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Rating implements _Rating {
-  const _$_Rating(
+class _$RatingImpl implements _Rating {
+  const _$RatingImpl(
       {required this.snapId,
       required this.totalVotes,
       required this.ratingsBand});
@@ -130,7 +132,7 @@ class _$_Rating implements _Rating {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Rating &&
+            other is _$RatingImpl &&
             (identical(other.snapId, snapId) || other.snapId == snapId) &&
             (identical(other.totalVotes, totalVotes) ||
                 other.totalVotes == totalVotes) &&
@@ -144,15 +146,15 @@ class _$_Rating implements _Rating {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RatingCopyWith<_$_Rating> get copyWith =>
-      __$$_RatingCopyWithImpl<_$_Rating>(this, _$identity);
+  _$$RatingImplCopyWith<_$RatingImpl> get copyWith =>
+      __$$RatingImplCopyWithImpl<_$RatingImpl>(this, _$identity);
 }
 
 abstract class _Rating implements Rating {
   const factory _Rating(
       {required final String snapId,
       required final int totalVotes,
-      required final RatingsBand ratingsBand}) = _$_Rating;
+      required final RatingsBand ratingsBand}) = _$RatingImpl;
 
   @override
   String get snapId;
@@ -162,6 +164,6 @@ abstract class _Rating implements Rating {
   RatingsBand get ratingsBand;
   @override
   @JsonKey(ignore: true)
-  _$$_RatingCopyWith<_$_Rating> get copyWith =>
+  _$$RatingImplCopyWith<_$RatingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

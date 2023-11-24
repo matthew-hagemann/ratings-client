@@ -13,24 +13,6 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class ChartType extends $pb.ProtobufEnum {
-  static const ChartType CHART_TYPE_TOP_UNSPECIFIED =
-      ChartType._(0, _omitEnumNames ? '' : 'CHART_TYPE_TOP_UNSPECIFIED');
-  static const ChartType CHART_TYPE_TOP =
-      ChartType._(1, _omitEnumNames ? '' : 'CHART_TYPE_TOP');
-
-  static const $core.List<ChartType> values = <ChartType>[
-    CHART_TYPE_TOP_UNSPECIFIED,
-    CHART_TYPE_TOP,
-  ];
-
-  static final $core.Map<$core.int, ChartType> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
-  static ChartType? valueOf($core.int value) => _byValue[value];
-
-  const ChartType._($core.int v, $core.String n) : super(v, n);
-}
-
 class Timeframe extends $pb.ProtobufEnum {
   static const Timeframe TIMEFRAME_UNSPECIFIED =
       Timeframe._(0, _omitEnumNames ? '' : 'TIMEFRAME_UNSPECIFIED');
@@ -50,6 +32,36 @@ class Timeframe extends $pb.ProtobufEnum {
   static Timeframe? valueOf($core.int value) => _byValue[value];
 
   const Timeframe._($core.int v, $core.String n) : super(v, n);
+}
+
+class RatingsBand extends $pb.ProtobufEnum {
+  static const RatingsBand VERY_GOOD =
+      RatingsBand._(0, _omitEnumNames ? '' : 'VERY_GOOD');
+  static const RatingsBand GOOD =
+      RatingsBand._(1, _omitEnumNames ? '' : 'GOOD');
+  static const RatingsBand NEUTRAL =
+      RatingsBand._(2, _omitEnumNames ? '' : 'NEUTRAL');
+  static const RatingsBand POOR =
+      RatingsBand._(3, _omitEnumNames ? '' : 'POOR');
+  static const RatingsBand VERY_POOR =
+      RatingsBand._(4, _omitEnumNames ? '' : 'VERY_POOR');
+  static const RatingsBand INSUFFICIENT_VOTES =
+      RatingsBand._(5, _omitEnumNames ? '' : 'INSUFFICIENT_VOTES');
+
+  static const $core.List<RatingsBand> values = <RatingsBand>[
+    VERY_GOOD,
+    GOOD,
+    NEUTRAL,
+    POOR,
+    VERY_POOR,
+    INSUFFICIENT_VOTES,
+  ];
+
+  static final $core.Map<$core.int, RatingsBand> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
+  static RatingsBand? valueOf($core.int value) => _byValue[value];
+
+  const RatingsBand._($core.int v, $core.String n) : super(v, n);
 }
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

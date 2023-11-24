@@ -21,14 +21,10 @@ export 'ratings_features_chart.pbenum.dart';
 class GetChartRequest extends $pb.GeneratedMessage {
   factory GetChartRequest({
     Timeframe? timeframe,
-    ChartType? type,
   }) {
     final $result = create();
     if (timeframe != null) {
       $result.timeframe = timeframe;
-    }
-    if (type != null) {
-      $result.type = type;
     }
     return $result;
   }
@@ -49,10 +45,6 @@ class GetChartRequest extends $pb.GeneratedMessage {
         defaultOrMaker: Timeframe.TIMEFRAME_UNSPECIFIED,
         valueOf: Timeframe.valueOf,
         enumValues: Timeframe.values)
-    ..e<ChartType>(2, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE,
-        defaultOrMaker: ChartType.CHART_TYPE_TOP_UNSPECIFIED,
-        valueOf: ChartType.valueOf,
-        enumValues: ChartType.values)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -89,32 +81,16 @@ class GetChartRequest extends $pb.GeneratedMessage {
   $core.bool hasTimeframe() => $_has(0);
   @$pb.TagNumber(1)
   void clearTimeframe() => clearField(1);
-
-  @$pb.TagNumber(2)
-  ChartType get type => $_getN(1);
-  @$pb.TagNumber(2)
-  set type(ChartType v) {
-    setField(2, v);
-  }
-
-  @$pb.TagNumber(2)
-  $core.bool hasType() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearType() => clearField(2);
 }
 
 class GetChartResponse extends $pb.GeneratedMessage {
   factory GetChartResponse({
     Timeframe? timeframe,
-    ChartType? type,
     $core.Iterable<ChartData>? orderedChartData,
   }) {
     final $result = create();
     if (timeframe != null) {
       $result.timeframe = timeframe;
-    }
-    if (type != null) {
-      $result.type = type;
     }
     if (orderedChartData != null) {
       $result.orderedChartData.addAll(orderedChartData);
@@ -138,12 +114,8 @@ class GetChartResponse extends $pb.GeneratedMessage {
         defaultOrMaker: Timeframe.TIMEFRAME_UNSPECIFIED,
         valueOf: Timeframe.valueOf,
         enumValues: Timeframe.values)
-    ..e<ChartType>(2, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE,
-        defaultOrMaker: ChartType.CHART_TYPE_TOP_UNSPECIFIED,
-        valueOf: ChartType.valueOf,
-        enumValues: ChartType.values)
     ..pc<ChartData>(
-        3, _omitFieldNames ? '' : 'orderedChartData', $pb.PbFieldType.PM,
+        2, _omitFieldNames ? '' : 'orderedChartData', $pb.PbFieldType.PM,
         subBuilder: ChartData.create)
     ..hasRequiredFields = false;
 
@@ -183,19 +155,7 @@ class GetChartResponse extends $pb.GeneratedMessage {
   void clearTimeframe() => clearField(1);
 
   @$pb.TagNumber(2)
-  ChartType get type => $_getN(1);
-  @$pb.TagNumber(2)
-  set type(ChartType v) {
-    setField(2, v);
-  }
-
-  @$pb.TagNumber(2)
-  $core.bool hasType() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearType() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.List<ChartData> get orderedChartData => $_getList(2);
+  $core.List<ChartData> get orderedChartData => $_getList(1);
 }
 
 class ChartData extends $pb.GeneratedMessage {
@@ -203,6 +163,8 @@ class ChartData extends $pb.GeneratedMessage {
     $core.String? app,
     $fixnum.Int64? totalUpVotes,
     $fixnum.Int64? totalDownVotes,
+    $core.double? rating,
+    RatingsBand? ratingsBand,
   }) {
     final $result = create();
     if (app != null) {
@@ -213,6 +175,12 @@ class ChartData extends $pb.GeneratedMessage {
     }
     if (totalDownVotes != null) {
       $result.totalDownVotes = totalDownVotes;
+    }
+    if (rating != null) {
+      $result.rating = rating;
+    }
+    if (ratingsBand != null) {
+      $result.ratingsBand = ratingsBand;
     }
     return $result;
   }
@@ -236,6 +204,12 @@ class ChartData extends $pb.GeneratedMessage {
     ..a<$fixnum.Int64>(
         3, _omitFieldNames ? '' : 'totalDownVotes', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$core.double>(4, _omitFieldNames ? '' : 'rating', $pb.PbFieldType.OF)
+    ..e<RatingsBand>(
+        5, _omitFieldNames ? '' : 'ratingsBand', $pb.PbFieldType.OE,
+        defaultOrMaker: RatingsBand.VERY_GOOD,
+        valueOf: RatingsBand.valueOf,
+        enumValues: RatingsBand.values)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -294,6 +268,30 @@ class ChartData extends $pb.GeneratedMessage {
   $core.bool hasTotalDownVotes() => $_has(2);
   @$pb.TagNumber(3)
   void clearTotalDownVotes() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.double get rating => $_getN(3);
+  @$pb.TagNumber(4)
+  set rating($core.double v) {
+    $_setFloat(3, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasRating() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearRating() => clearField(4);
+
+  @$pb.TagNumber(5)
+  RatingsBand get ratingsBand => $_getN(4);
+  @$pb.TagNumber(5)
+  set ratingsBand(RatingsBand v) {
+    setField(5, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasRatingsBand() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearRatingsBand() => clearField(5);
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
