@@ -11,10 +11,10 @@
 
 import 'dart:core' as $core;
 
-import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'ratings_features_chart.pbenum.dart';
+import 'ratings_features_common.pb.dart' as $1;
 
 export 'ratings_features_chart.pbenum.dart';
 
@@ -160,27 +160,15 @@ class GetChartResponse extends $pb.GeneratedMessage {
 
 class ChartData extends $pb.GeneratedMessage {
   factory ChartData({
-    $core.String? app,
-    $fixnum.Int64? totalUpVotes,
-    $fixnum.Int64? totalDownVotes,
-    $core.double? rating,
-    RatingsBand? ratingsBand,
+    $core.double? rawRating,
+    $1.Rating? rating,
   }) {
     final $result = create();
-    if (app != null) {
-      $result.app = app;
-    }
-    if (totalUpVotes != null) {
-      $result.totalUpVotes = totalUpVotes;
-    }
-    if (totalDownVotes != null) {
-      $result.totalDownVotes = totalDownVotes;
+    if (rawRating != null) {
+      $result.rawRating = rawRating;
     }
     if (rating != null) {
       $result.rating = rating;
-    }
-    if (ratingsBand != null) {
-      $result.ratingsBand = ratingsBand;
     }
     return $result;
   }
@@ -197,19 +185,9 @@ class ChartData extends $pb.GeneratedMessage {
       package: const $pb.PackageName(
           _omitMessageNames ? '' : 'ratings.features.chart'),
       createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'app')
-    ..a<$fixnum.Int64>(
-        2, _omitFieldNames ? '' : 'totalUpVotes', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(
-        3, _omitFieldNames ? '' : 'totalDownVotes', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$core.double>(4, _omitFieldNames ? '' : 'rating', $pb.PbFieldType.OF)
-    ..e<RatingsBand>(
-        5, _omitFieldNames ? '' : 'ratingsBand', $pb.PbFieldType.OE,
-        defaultOrMaker: RatingsBand.VERY_GOOD,
-        valueOf: RatingsBand.valueOf,
-        enumValues: RatingsBand.values)
+    ..a<$core.double>(1, _omitFieldNames ? '' : 'rawRating', $pb.PbFieldType.OF)
+    ..aOM<$1.Rating>(2, _omitFieldNames ? '' : 'rating',
+        subBuilder: $1.Rating.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -234,64 +212,30 @@ class ChartData extends $pb.GeneratedMessage {
   static ChartData? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get app => $_getSZ(0);
+  $core.double get rawRating => $_getN(0);
   @$pb.TagNumber(1)
-  set app($core.String v) {
-    $_setString(0, v);
+  set rawRating($core.double v) {
+    $_setFloat(0, v);
   }
 
   @$pb.TagNumber(1)
-  $core.bool hasApp() => $_has(0);
+  $core.bool hasRawRating() => $_has(0);
   @$pb.TagNumber(1)
-  void clearApp() => clearField(1);
+  void clearRawRating() => clearField(1);
 
   @$pb.TagNumber(2)
-  $fixnum.Int64 get totalUpVotes => $_getI64(1);
+  $1.Rating get rating => $_getN(1);
   @$pb.TagNumber(2)
-  set totalUpVotes($fixnum.Int64 v) {
-    $_setInt64(1, v);
+  set rating($1.Rating v) {
+    setField(2, v);
   }
 
   @$pb.TagNumber(2)
-  $core.bool hasTotalUpVotes() => $_has(1);
+  $core.bool hasRating() => $_has(1);
   @$pb.TagNumber(2)
-  void clearTotalUpVotes() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $fixnum.Int64 get totalDownVotes => $_getI64(2);
-  @$pb.TagNumber(3)
-  set totalDownVotes($fixnum.Int64 v) {
-    $_setInt64(2, v);
-  }
-
-  @$pb.TagNumber(3)
-  $core.bool hasTotalDownVotes() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearTotalDownVotes() => clearField(3);
-
-  @$pb.TagNumber(4)
-  $core.double get rating => $_getN(3);
-  @$pb.TagNumber(4)
-  set rating($core.double v) {
-    $_setFloat(3, v);
-  }
-
-  @$pb.TagNumber(4)
-  $core.bool hasRating() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearRating() => clearField(4);
-
-  @$pb.TagNumber(5)
-  RatingsBand get ratingsBand => $_getN(4);
-  @$pb.TagNumber(5)
-  set ratingsBand(RatingsBand v) {
-    setField(5, v);
-  }
-
-  @$pb.TagNumber(5)
-  $core.bool hasRatingsBand() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearRatingsBand() => clearField(5);
+  void clearRating() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.Rating ensureRating() => $_ensure(1);
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');

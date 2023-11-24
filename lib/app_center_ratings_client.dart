@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:grpc/grpc.dart';
 import 'package:meta/meta.dart';
 
-import 'src/app.dart' as app;
 import 'src/chart.dart' as chart;
+import 'src/common.dart' as app;
 import 'src/generated/google/protobuf/empty.pb.dart';
 import 'src/generated/ratings_features_app.pbgrpc.dart';
 import 'src/generated/ratings_features_chart.pbgrpc.dart';
@@ -48,6 +48,16 @@ class RatingsClient {
     final callOptions =
         CallOptions(metadata: {'authorization': 'Bearer $token'});
     await _userClient.delete(request, options: callOptions);
+  }
+
+  Future<List<chart.ChartData>> getChart(
+      chart.Timeframe timeframe, String token) async {
+    final request = GetChartRequest(timeframe: timeframe.toDTO());
+    final callOptions =
+        CallOptions(metadata: {'authorization': 'Bearer $token'});
+    final grpcResponse =
+        await _chartClient.getChart(request, options: callOptions);
+    return grpcResponse.orderedChartData.map((data) => data.fromDTO()).toList();
   }
 
   Future<app.Rating> getRating(
@@ -96,15 +106,5 @@ class RatingsClient {
     final callOptions =
         CallOptions(metadata: {'authorization': 'Bearer $token'});
     await _userClient.vote(request, options: callOptions);
-  }
-
-  Future<List<chart.ChartData>> getChart(
-      chart.Timeframe timeframe, String token) async {
-    final request = GetChartRequest(timeframe: timeframe.toDTO());
-    final callOptions =
-        CallOptions(metadata: {'authorization': 'Bearer $token'});
-    final grpcResponse =
-        await _chartClient.getChart(request, options: callOptions);
-    return grpcResponse.orderedChartData.map((data) => data.fromDTO()).toList();
   }
 }

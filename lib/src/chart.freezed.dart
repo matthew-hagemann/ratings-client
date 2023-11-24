@@ -16,11 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ChartData {
-  String get app => throw _privateConstructorUsedError;
-  int get totalUpVotes => throw _privateConstructorUsedError;
-  int get totalDownVotes => throw _privateConstructorUsedError;
-  double get rating => throw _privateConstructorUsedError;
-  RatingsBand get ratingsBand => throw _privateConstructorUsedError;
+  double get rawRating => throw _privateConstructorUsedError;
+  common.Rating get rating => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChartDataCopyWith<ChartData> get copyWith =>
@@ -32,12 +29,7 @@ abstract class $ChartDataCopyWith<$Res> {
   factory $ChartDataCopyWith(ChartData value, $Res Function(ChartData) then) =
       _$ChartDataCopyWithImpl<$Res, ChartData>;
   @useResult
-  $Res call(
-      {String app,
-      int totalUpVotes,
-      int totalDownVotes,
-      double rating,
-      RatingsBand ratingsBand});
+  $Res call({double rawRating, common.Rating rating});
 }
 
 /// @nodoc
@@ -53,33 +45,18 @@ class _$ChartDataCopyWithImpl<$Res, $Val extends ChartData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? app = null,
-    Object? totalUpVotes = null,
-    Object? totalDownVotes = null,
+    Object? rawRating = null,
     Object? rating = null,
-    Object? ratingsBand = null,
   }) {
     return _then(_value.copyWith(
-      app: null == app
-          ? _value.app
-          : app // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalUpVotes: null == totalUpVotes
-          ? _value.totalUpVotes
-          : totalUpVotes // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalDownVotes: null == totalDownVotes
-          ? _value.totalDownVotes
-          : totalDownVotes // ignore: cast_nullable_to_non_nullable
-              as int,
+      rawRating: null == rawRating
+          ? _value.rawRating
+          : rawRating // ignore: cast_nullable_to_non_nullable
+              as double,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      ratingsBand: null == ratingsBand
-          ? _value.ratingsBand
-          : ratingsBand // ignore: cast_nullable_to_non_nullable
-              as RatingsBand,
+              as common.Rating,
     ) as $Val);
   }
 }
@@ -92,12 +69,7 @@ abstract class _$$ChartDataImplCopyWith<$Res>
       __$$ChartDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String app,
-      int totalUpVotes,
-      int totalDownVotes,
-      double rating,
-      RatingsBand ratingsBand});
+  $Res call({double rawRating, common.Rating rating});
 }
 
 /// @nodoc
@@ -111,33 +83,18 @@ class __$$ChartDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? app = null,
-    Object? totalUpVotes = null,
-    Object? totalDownVotes = null,
+    Object? rawRating = null,
     Object? rating = null,
-    Object? ratingsBand = null,
   }) {
     return _then(_$ChartDataImpl(
-      app: null == app
-          ? _value.app
-          : app // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalUpVotes: null == totalUpVotes
-          ? _value.totalUpVotes
-          : totalUpVotes // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalDownVotes: null == totalDownVotes
-          ? _value.totalDownVotes
-          : totalDownVotes // ignore: cast_nullable_to_non_nullable
-              as int,
+      rawRating: null == rawRating
+          ? _value.rawRating
+          : rawRating // ignore: cast_nullable_to_non_nullable
+              as double,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      ratingsBand: null == ratingsBand
-          ? _value.ratingsBand
-          : ratingsBand // ignore: cast_nullable_to_non_nullable
-              as RatingsBand,
+              as common.Rating,
     ));
   }
 }
@@ -145,27 +102,16 @@ class __$$ChartDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChartDataImpl implements _ChartData {
-  const _$ChartDataImpl(
-      {required this.app,
-      required this.totalUpVotes,
-      required this.totalDownVotes,
-      required this.rating,
-      required this.ratingsBand});
+  const _$ChartDataImpl({required this.rawRating, required this.rating});
 
   @override
-  final String app;
+  final double rawRating;
   @override
-  final int totalUpVotes;
-  @override
-  final int totalDownVotes;
-  @override
-  final double rating;
-  @override
-  final RatingsBand ratingsBand;
+  final common.Rating rating;
 
   @override
   String toString() {
-    return 'ChartData(app: $app, totalUpVotes: $totalUpVotes, totalDownVotes: $totalDownVotes, rating: $rating, ratingsBand: $ratingsBand)';
+    return 'ChartData(rawRating: $rawRating, rating: $rating)';
   }
 
   @override
@@ -173,19 +119,13 @@ class _$ChartDataImpl implements _ChartData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChartDataImpl &&
-            (identical(other.app, app) || other.app == app) &&
-            (identical(other.totalUpVotes, totalUpVotes) ||
-                other.totalUpVotes == totalUpVotes) &&
-            (identical(other.totalDownVotes, totalDownVotes) ||
-                other.totalDownVotes == totalDownVotes) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
-            (identical(other.ratingsBand, ratingsBand) ||
-                other.ratingsBand == ratingsBand));
+            (identical(other.rawRating, rawRating) ||
+                other.rawRating == rawRating) &&
+            (identical(other.rating, rating) || other.rating == rating));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, app, totalUpVotes, totalDownVotes, rating, ratingsBand);
+  int get hashCode => Object.hash(runtimeType, rawRating, rating);
 
   @JsonKey(ignore: true)
   @override
@@ -196,22 +136,13 @@ class _$ChartDataImpl implements _ChartData {
 
 abstract class _ChartData implements ChartData {
   const factory _ChartData(
-      {required final String app,
-      required final int totalUpVotes,
-      required final int totalDownVotes,
-      required final double rating,
-      required final RatingsBand ratingsBand}) = _$ChartDataImpl;
+      {required final double rawRating,
+      required final common.Rating rating}) = _$ChartDataImpl;
 
   @override
-  String get app;
+  double get rawRating;
   @override
-  int get totalUpVotes;
-  @override
-  int get totalDownVotes;
-  @override
-  double get rating;
-  @override
-  RatingsBand get ratingsBand;
+  common.Rating get rating;
   @override
   @JsonKey(ignore: true)
   _$$ChartDataImplCopyWith<_$ChartDataImpl> get copyWith =>

@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:app_center_ratings_client/app_center_ratings_client.dart';
-import 'package:app_center_ratings_client/src/app.dart' as app;
 import 'package:app_center_ratings_client/src/chart.dart' as chart;
+import 'package:app_center_ratings_client/src/common.dart' as common;
 import 'package:app_center_ratings_client/src/generated/google/protobuf/empty.pb.dart';
 import 'package:app_center_ratings_client/src/generated/google/protobuf/timestamp.pb.dart';
 import 'package:app_center_ratings_client/src/generated/ratings_features_app.pbgrpc.dart'
     as pb;
 import 'package:app_center_ratings_client/src/generated/ratings_features_chart.pbgrpc.dart';
+import 'package:app_center_ratings_client/src/generated/ratings_features_common.pb.dart';
 import 'package:app_center_ratings_client/src/generated/ratings_features_user.pbgrpc.dart';
 import 'package:app_center_ratings_client/src/user.dart' as user;
 import 'package:fixnum/fixnum.dart';
@@ -27,27 +28,27 @@ void main() {
       RatingsClient.withClients(mockAppClient, mockUserClient, mockChartClient);
 
   test('get chart', () async {
-    final app = 'foo';
+    final snapId = 'foobar';
     final token = 'bar';
     final timeframe = chart.Timeframe.month;
     final pbChartList = [
       ChartData(
-        app: app,
-        totalUpVotes: Int64(1),
-        totalDownVotes: Int64(2),
-        rating: 3,
-        ratingsBand: RatingsBand.NEUTRAL,
-      )
+          rawRating: 3,
+          rating: Rating(
+            snapId: snapId,
+            totalVotes: Int64(105),
+            ratingsBand: RatingsBand.NEUTRAL,
+          ))
     ];
 
     final expectedResponse = [
       chart.ChartData(
-        app: app,
-        totalUpVotes: 1,
-        totalDownVotes: 2,
-        rating: 3,
-        ratingsBand: chart.RatingsBand.neutral,
-      )
+          rawRating: 3,
+          rating: common.Rating(
+            snapId: snapId,
+            totalVotes: 105,
+            ratingsBand: common.RatingsBand.neutral,
+          ))
     ];
     final mockResponse = GetChartResponse(
       timeframe: Timeframe.TIMEFRAME_MONTH,
@@ -80,15 +81,15 @@ void main() {
   test('get rating', () async {
     final snapId = 'foo';
     final token = 'bar';
-    final pbRating = pb.Rating(
+    final pbRating = Rating(
       snapId: snapId,
       totalVotes: Int64(105),
-      ratingsBand: pb.RatingsBand.NEUTRAL,
+      ratingsBand: RatingsBand.NEUTRAL,
     );
-    final expectedResponse = app.Rating(
+    final expectedResponse = common.Rating(
       snapId: snapId,
       totalVotes: 105,
-      ratingsBand: app.RatingsBand.neutral,
+      ratingsBand: common.RatingsBand.neutral,
     );
     final mockResponse = pb.GetRatingResponse(rating: pbRating);
     final request = pb.GetRatingRequest(snapId: snapId);
