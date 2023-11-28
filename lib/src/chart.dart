@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'common.dart' as common;
 import 'generated/ratings_features_chart.pb.dart' as pb;
+import 'ratings.dart' as common;
 
 part 'chart.freezed.dart';
 

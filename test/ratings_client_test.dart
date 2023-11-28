@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:app_center_ratings_client/app_center_ratings_client.dart';
 import 'package:app_center_ratings_client/src/chart.dart' as chart;
-import 'package:app_center_ratings_client/src/common.dart' as common;
 import 'package:app_center_ratings_client/src/generated/google/protobuf/empty.pb.dart';
 import 'package:app_center_ratings_client/src/generated/google/protobuf/timestamp.pb.dart';
 import 'package:app_center_ratings_client/src/generated/ratings_features_app.pbgrpc.dart'
@@ -10,6 +9,7 @@ import 'package:app_center_ratings_client/src/generated/ratings_features_app.pbg
 import 'package:app_center_ratings_client/src/generated/ratings_features_chart.pbgrpc.dart';
 import 'package:app_center_ratings_client/src/generated/ratings_features_common.pb.dart';
 import 'package:app_center_ratings_client/src/generated/ratings_features_user.pbgrpc.dart';
+import 'package:app_center_ratings_client/src/ratings.dart' as ratings;
 import 'package:app_center_ratings_client/src/user.dart' as user;
 import 'package:fixnum/fixnum.dart';
 import 'package:grpc/grpc.dart';
@@ -44,10 +44,10 @@ void main() {
     final expectedResponse = [
       chart.ChartData(
           rawRating: 3,
-          rating: common.Rating(
+          rating: ratings.Rating(
             snapId: snapId,
             totalVotes: 105,
-            ratingsBand: common.RatingsBand.neutral,
+            ratingsBand: ratings.RatingsBand.neutral,
           ))
     ];
     final mockResponse = GetChartResponse(
@@ -86,10 +86,10 @@ void main() {
       totalVotes: Int64(105),
       ratingsBand: RatingsBand.NEUTRAL,
     );
-    final expectedResponse = common.Rating(
+    final expectedResponse = ratings.Rating(
       snapId: snapId,
       totalVotes: 105,
-      ratingsBand: common.RatingsBand.neutral,
+      ratingsBand: ratings.RatingsBand.neutral,
     );
     final mockResponse = pb.GetRatingResponse(rating: pbRating);
     final request = pb.GetRatingRequest(snapId: snapId);
