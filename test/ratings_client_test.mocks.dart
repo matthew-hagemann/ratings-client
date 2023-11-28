@@ -11,6 +11,10 @@ import 'package:app_center_ratings_client/src/generated/ratings_features_app.pb.
     as _i5;
 import 'package:app_center_ratings_client/src/generated/ratings_features_app.pbgrpc.dart'
     as _i4;
+import 'package:app_center_ratings_client/src/generated/ratings_features_chart.pb.dart'
+    as _i11;
+import 'package:app_center_ratings_client/src/generated/ratings_features_chart.pbgrpc.dart'
+    as _i10;
 import 'package:app_center_ratings_client/src/generated/ratings_features_user.pb.dart'
     as _i8;
 import 'package:app_center_ratings_client/src/generated/ratings_features_user.pbgrpc.dart'
@@ -91,6 +95,7 @@ class MockAppClient extends _i1.Mock implements _i4.AppClient {
           ),
         ),
       ) as _i2.ResponseFuture<_i5.GetRatingResponse>);
+
   @override
   _i3.ClientCall<Q, R> $createCall<Q, R>(
     _i2.ClientMethod<Q, R>? method,
@@ -118,6 +123,7 @@ class MockAppClient extends _i1.Mock implements _i4.AppClient {
           ),
         ),
       ) as _i3.ClientCall<Q, R>);
+
   @override
   _i2.ResponseFuture<R> $createUnaryCall<Q, R>(
     _i2.ClientMethod<Q, R>? method,
@@ -145,6 +151,7 @@ class MockAppClient extends _i1.Mock implements _i4.AppClient {
           ),
         ),
       ) as _i2.ResponseFuture<R>);
+
   @override
   _i2.ResponseStream<R> $createStreamingCall<Q, R>(
     _i2.ClientMethod<Q, R>? method,
@@ -202,6 +209,7 @@ class MockUserClient extends _i1.Mock implements _i7.UserClient {
           ),
         ),
       ) as _i2.ResponseFuture<_i8.AuthenticateResponse>);
+
   @override
   _i2.ResponseFuture<_i9.Empty> delete(
     _i9.Empty? request, {
@@ -222,6 +230,7 @@ class MockUserClient extends _i1.Mock implements _i7.UserClient {
           ),
         ),
       ) as _i2.ResponseFuture<_i9.Empty>);
+
   @override
   _i2.ResponseFuture<_i9.Empty> vote(
     _i8.VoteRequest? request, {
@@ -242,6 +251,7 @@ class MockUserClient extends _i1.Mock implements _i7.UserClient {
           ),
         ),
       ) as _i2.ResponseFuture<_i9.Empty>);
+
   @override
   _i2.ResponseFuture<_i8.ListMyVotesResponse> listMyVotes(
     _i8.ListMyVotesRequest? request, {
@@ -262,6 +272,7 @@ class MockUserClient extends _i1.Mock implements _i7.UserClient {
           ),
         ),
       ) as _i2.ResponseFuture<_i8.ListMyVotesResponse>);
+
   @override
   _i2.ResponseFuture<_i8.GetSnapVotesResponse> getSnapVotes(
     _i8.GetSnapVotesRequest? request, {
@@ -282,6 +293,7 @@ class MockUserClient extends _i1.Mock implements _i7.UserClient {
           ),
         ),
       ) as _i2.ResponseFuture<_i8.GetSnapVotesResponse>);
+
   @override
   _i3.ClientCall<Q, R> $createCall<Q, R>(
     _i2.ClientMethod<Q, R>? method,
@@ -309,6 +321,7 @@ class MockUserClient extends _i1.Mock implements _i7.UserClient {
           ),
         ),
       ) as _i3.ClientCall<Q, R>);
+
   @override
   _i2.ResponseFuture<R> $createUnaryCall<Q, R>(
     _i2.ClientMethod<Q, R>? method,
@@ -336,6 +349,121 @@ class MockUserClient extends _i1.Mock implements _i7.UserClient {
           ),
         ),
       ) as _i2.ResponseFuture<R>);
+
+  @override
+  _i2.ResponseStream<R> $createStreamingCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    _i6.Stream<Q>? requests, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createStreamingCall,
+          [
+            method,
+            requests,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseStream_2<R>(
+          this,
+          Invocation.method(
+            #$createStreamingCall,
+            [
+              method,
+              requests,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseStream<R>);
+}
+
+/// A class which mocks [ChartClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockChartClient extends _i1.Mock implements _i10.ChartClient {
+  MockChartClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.ResponseFuture<_i11.GetChartResponse> getChart(
+    _i11.GetChartRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getChart,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i11.GetChartResponse>(
+          this,
+          Invocation.method(
+            #getChart,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i11.GetChartResponse>);
+
+  @override
+  _i3.ClientCall<Q, R> $createCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    _i6.Stream<Q>? requests, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createCall,
+          [
+            method,
+            requests,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeClientCall_1<Q, R>(
+          this,
+          Invocation.method(
+            #$createCall,
+            [
+              method,
+              requests,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i3.ClientCall<Q, R>);
+
+  @override
+  _i2.ResponseFuture<R> $createUnaryCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    Q? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createUnaryCall,
+          [
+            method,
+            request,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<R>(
+          this,
+          Invocation.method(
+            #$createUnaryCall,
+            [
+              method,
+              request,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<R>);
+
   @override
   _i2.ResponseStream<R> $createStreamingCall<Q, R>(
     _i2.ClientMethod<Q, R>? method,
