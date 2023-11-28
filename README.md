@@ -1,14 +1,1 @@
-# Dart Client for Ubuntu App Ratings Service 
-
-## Generating protos:
-
-protoc \
-    --dart_out=grpc:./lib/src/generated \
-    -I./protos \
-    ./protos/ratings_features_user.proto google/protobuf/timestamp.proto google/protobuf/empty.proto
-
-
-protoc --dart_out=grpc:lib/src/generated -Iprotos protos/ratings_features_chart.proto
-
-
-protoc --dart_out=grpc:lib/src/generated -Iprotos protos/ratings_features_app.proto 
+This repository has been depricated and this client moved into the [app-center repo](https://github.com/ubuntu/app-center/tree/main/packages/app_center_ratings_client)https://github.com/ubuntu/app-center/tree/main/packages/app_center_ratings_client
